@@ -1,0 +1,9 @@
+{
+  "generator-ptz-graphql": {
+    "promptValues": {
+      "appname": "minesweeper-graphql",
+      "githubAuthor": "alanmarcell",
+      "codecovToken": "d63c9559-c5c9-48f9-8914-d0d6ad9d5a9b"
+    }
+  }
+}

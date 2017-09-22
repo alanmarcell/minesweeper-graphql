@@ -1,0 +1,71 @@
+{
+  "name": "minesweeper-graphql",
+  "version": "1.0.0",
+  "description": "this is a Polutz module.",
+  "main": "dist/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "lint": "tslint ./src/**/*.ts ./src/**/*.test.ts ./src/**/*.d.ts",
+    "js": "rimraf dist-esnext && tsc && npm run babel",
+    "js:w": "rimraf dist-esnext && tsc -w",
+    "babel":"rimraf dist && babel dist-esnext -d dist --presets es2015 --source-maps",
+    "babel:w":"rimraf dist && babel dist-esnext --watch -d dist --presets es2015 --source-maps",
+    "pretest": "npm-run-all --parallel js lint",
+    "mocha": "mocha ./dist/**/*.js --require babel-polyfill",
+    "test": "nyc npm run mocha && nyc report --reporter=html --reporter=text-lcov > coverage.lcov && f() { EXIT=0; codecov --token=d63c9559-c5c9-48f9-8914-d0d6ad9d5a9b || exit $EXIT; }; f",
+    "test:cover": "npm run test && opn ./coverage/index.html",
+    "predebug": "npm run pretest",
+    "debug": "node --nolazy --debug-brk=5858 dist/index.js",
+    "docs:build": "typedoc --out ./docs ./ --includeDeclarations --excludeExternals --exclude '**/*.test.ts'",
+    "docs": "npm run docs:build && opn ./docs/index.html",
+    "start": "npm-run-all --parallel gensalt server",
+    "server": "babel-node --presets es2015 dist/index.js",
+    "gensalt": "node gensalt.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanmarcell/minesweeper-graphql.git"
+  },
+  "author": "github.com/angeloocana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanmarcell/minesweeper-graphql/issues"
+  },
+  "homepage": "https://github.com/alanmarcell/minesweeper-graphql#readme",
+  "devDependencies": {
+    "babel-cli": "^7.0.0-beta.1",
+    "babel-preset-es2015": "^7.0.0-beta.1",
+    "babel-preset-es2017": "^7.0.0-beta.1",
+    "codecov": "^2.1.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^11.2.1",
+    "ptz-assert": "^1.6.3",
+    "rimraf": "^2.6.1",
+    "sinon": "^3.3.0",
+    "tslint": "^5.0.0",
+    "typescript": "^2.5.3-insiders.20170919",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^8.0.28",
+    "typedoc": "^0.8.0",
+    "opn-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "ptz-log": "^1.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.4",
+    "graphql": "^0.11.3",
+    "graphql-relay": "^0.5.1",
+    "mongodb": "^2.2.25",
+    "ptz-log-file": "^1.0.0",
+    "ptz-user-app": "^2.1.1",
+    "ptz-user-domain": "^2.1.1",
+    "ptz-user-repository": "^2.1.3",
+    "ptz-menu-domain": "^1.0.0"
+  }
+}
